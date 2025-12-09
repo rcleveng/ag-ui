@@ -1390,7 +1390,7 @@ class ADKAgent:
 
                 # Process as streaming if it's a chunk OR if it has content but no finish_reason,
                 # but only when there is no LRO function call present (LRO takes precedence)
-                if (not has_lro_function_call) and (is_streaming_chunk or (has_content and not getattr(adk_event, 'finish_reason', None))):
+                if (not has_lro_function_call) and (is_streaming_chunk or has_content):
                     # Regular translation path
                     async for ag_ui_event in event_translator.translate(
                         adk_event,
